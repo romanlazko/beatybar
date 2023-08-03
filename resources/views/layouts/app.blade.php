@@ -22,7 +22,6 @@
         <link rel="modulepreload" href="https://9085-2a02-8308-a006-d600-b05c-f9f8-d98e-af8d.ngrok-free.app/build/assets/app-4a08c204.js">
         <link rel="stylesheet" href="https://9085-2a02-8308-a006-d600-b05c-f9f8-d98e-af8d.ngrok-free.app/build/assets/app-0e5066c2.css">
         <script type="module" src="https://9085-2a02-8308-a006-d600-b05c-f9f8-d98e-af8d.ngrok-free.app/build/assets/app-4a08c204.js"></script> --}}
-        @livewireStyles
     </head>
     
     <body class="font-sans antialiased">
