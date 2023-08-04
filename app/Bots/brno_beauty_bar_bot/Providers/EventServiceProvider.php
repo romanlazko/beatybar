@@ -3,8 +3,10 @@ namespace App\Bots\brno_beauty_bar_bot\Providers;
 
 use App\Bots\brno_beauty_bar_bot\Events\CancelAppointment;
 use App\Bots\brno_beauty_bar_bot\Events\NewAppointment;
+use App\Bots\brno_beauty_bar_bot\Events\TomorrowAppointment;
 use App\Bots\brno_beauty_bar_bot\Events\UpdateAppointment;
 use App\Bots\brno_beauty_bar_bot\Listeners\SendToAdminNewAppointmentNotification;
+use App\Bots\brno_beauty_bar_bot\Listeners\SendToAdminTomorrowAppointmentNotification;
 use App\Bots\brno_beauty_bar_bot\Listeners\SendToAdminUpdateAppointmentNotification;
 use App\Bots\brno_beauty_bar_bot\Listeners\SendToUserCancelAppointmentNotification;
 use App\Bots\brno_beauty_bar_bot\Listeners\SendToUserNewAppointmentNotification;
@@ -30,6 +32,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         CancelAppointment::class => [
             SendToUserCancelAppointmentNotification::class,
+        ],
+        TomorrowAppointment::class => [
+            SendToAdminTomorrowAppointmentNotification::class,
         ],
     ];
 
