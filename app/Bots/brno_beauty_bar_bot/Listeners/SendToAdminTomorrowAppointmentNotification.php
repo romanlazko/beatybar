@@ -34,9 +34,9 @@ class SendToAdminTomorrowAppointmentNotification
             "Телефон: [{$appointment->client->phone}]()"."\n",
         ]);
         
-        $this->telegram::sendMessages([
+        $this->telegram::sendMessage([
             'text'          =>  $text,
-            'chat_ids'      =>  $appointment->schedule->user->telegram_chat_id,
+            'chat_id'      =>  $appointment->schedule->user->telegram_chat_id,
             'reply_markup'  =>  $buttons,
             'parse_mode'    =>  'Markdown',
         ]);
