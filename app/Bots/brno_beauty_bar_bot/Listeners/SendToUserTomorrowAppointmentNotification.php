@@ -34,7 +34,7 @@ class SendToUserTomorrowAppointmentNotification
         if ($appointment->client->telegram_chat_id) {
             $this->telegram::sendMessage([
                 'text'          =>  $text,
-                'chat_id'       =>  $appointment?->client?->telegram_chat_id,
+                'chat_id'       =>  $appointment?->client?->telegram_chat->chat_id,
                 'parse_mode'    =>  'Markdown',
             ]);
         }
