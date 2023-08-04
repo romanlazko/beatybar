@@ -8,8 +8,6 @@ use App\Bots\brno_beauty_bar_bot\Http\Controllers\EmployeeController;
 use App\Bots\brno_beauty_bar_bot\Http\Controllers\ScheduleController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/cron', CronController::class);
-
 Route::middleware(['web', 'auth', 'telegram:brno_beauty_bar_bot'])->name('brno_beauty_bar_bot.')->group(function () {
     Route::get('/page', function(){
         return view('brno_beauty_bar_bot::page');
@@ -19,3 +17,5 @@ Route::middleware(['web', 'auth', 'telegram:brno_beauty_bar_bot'])->name('brno_b
     Route::resource('schedule', ScheduleController::class);
     Route::resource('appointment', AppointmentController::class);
 });
+
+Route::middleware(['api'])->prefix('api/telegram/{bot}')->get('/cron', CronController::class); 
