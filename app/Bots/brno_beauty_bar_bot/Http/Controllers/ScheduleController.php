@@ -25,7 +25,7 @@ class ScheduleController extends Controller
         foreach ($schedules as $schedule) {
             if (!$schedule->appointments->isEmpty()) {
 
-                if ($schedule->appointments->where('status', 'new')->count() == 0) {
+                if ($schedule->appointments->whereIn('status', ['new', 'done'])->count() == 0) {
                     $events[] = [
                         'id' => $schedule->id,
                         'start' => $schedule->date->format('Y-m-d') . " " . $schedule->term,
