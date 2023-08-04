@@ -29,10 +29,12 @@ class About extends Command
 
         $text = implode("\n", [
             "О нас:"."\n",
-            "Мы лучший салон в городе"."\n",
-            "Наши работы: [тут](https://instagram.com)"."\n",
-            "Администратор: [тут](https://t.me/valeri_kim95)"."\n",
-            "Где мы находимся: [Masarykova 427/31](https://goo.gl/maps/m2jeHYxHRFgSrXxd9)"."\n",
+
+            "💅 Наши работы можно посмотреть [тут](https://instagram.com/valeri.beautybar?igshid=MzRlODBiNWFlZA==)"."\n",
+
+            "📍 Мы находимся [тут](https://goo.gl/maps/m2jeHYxHRFgSrXxd9)"."\n",
+
+            "☎️ Связаться с [администратором](https://t.me/valeri_kim95)"
         ]);
 
         $data = [

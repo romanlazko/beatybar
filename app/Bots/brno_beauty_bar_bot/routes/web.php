@@ -3,9 +3,12 @@
 use App\Bots\brno_beauty_bar_bot\Http\Controllers\AppointmentController;
 use App\Bots\brno_beauty_bar_bot\Http\Controllers\CalendarController;
 use App\Bots\brno_beauty_bar_bot\Http\Controllers\ClientController;
+use App\Bots\brno_beauty_bar_bot\Http\Controllers\CronController;
 use App\Bots\brno_beauty_bar_bot\Http\Controllers\EmployeeController;
 use App\Bots\brno_beauty_bar_bot\Http\Controllers\ScheduleController;
 use Illuminate\Support\Facades\Route;
+
+Route::get('/cron', CronController::class);
 
 Route::middleware(['web', 'auth', 'telegram:brno_beauty_bar_bot'])->name('brno_beauty_bar_bot.')->group(function () {
     Route::get('/page', function(){
