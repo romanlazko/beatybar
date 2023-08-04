@@ -14,7 +14,7 @@ class CronController extends Controller
     {
         $appointments = Appointment::where('status', 'new')
             ->whereHas('schedule', function($query) {
-                $query->where('date', now()->format('Y-m-d'));
+                $query->where('date', now()->addDay()->format('Y-m-d'));
             });
 
         foreach ($appointments as $appointment) {
