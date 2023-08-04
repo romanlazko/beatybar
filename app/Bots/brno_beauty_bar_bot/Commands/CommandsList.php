@@ -14,7 +14,7 @@ class CommandsList extends DefaultCommandsList
         'user'      => [
             UserCommands\StartCommand::class,
             UserCommands\MenuCommand::class,
-            UserCommands\Location::class,
+            UserCommands\About::class,
             UserCommands\ShowMyAppointment::class,
             
 

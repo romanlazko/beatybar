@@ -1,6 +1,9 @@
-<x-nav-link :href="route('brno_beauty_bar_bot.client.index')" :active="request()->routeIs('brno_beauty_bar_bot.client.*')">
-    {{ __('Clients') }}
-</x-nav-link>
+@if (auth()->user()->isAdmin())
+    <x-nav-link :href="route('brno_beauty_bar_bot.client.index')" :active="request()->routeIs('brno_beauty_bar_bot.client.*')">
+        {{ __('Clients') }}
+    </x-nav-link>
+@endif
+
 <x-nav-link :href="route('brno_beauty_bar_bot.schedule.index')" :active="request()->routeIs('brno_beauty_bar_bot.schedule.*')">
     {{ __('Schedule') }}
 </x-nav-link>

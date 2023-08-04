@@ -1,7 +1,8 @@
-
-<x-responsive-nav-link :href="route('brno_beauty_bar_bot.client.index')" :active="request()->routeIs('brno_beauty_bar_bot.client.*')">
-    {{ __('Clients') }}
-</x-responsive-nav-link>
+@if (auth()->user()->isAdmin())
+    <x-responsive-nav-link :href="route('brno_beauty_bar_bot.client.index')" :active="request()->routeIs('brno_beauty_bar_bot.client.*')">
+        {{ __('Clients') }}
+    </x-responsive-nav-link>
+@endif
 <x-responsive-nav-link :href="route('brno_beauty_bar_bot.schedule.index')" :active="request()->routeIs('brno_beauty_bar_bot.schedule.*')">
     {{ __('Schedule') }}
 </x-responsive-nav-link>
