@@ -23,21 +23,16 @@ class SendToAdminTomorrowAppointmentNotification
     {
         $appointment = $event->appointment;
 
-        $buttons = $this->telegram::inlineKeyboard([
-            [array(MenuCommand::getTitle('ru'), MenuCommand::$command, '')]
-        ]);
-
         $text = implode("\n", [
             "⚠️У тебя на завтра запись⚠️"."\n",
             "*{$appointment->schedule->user->name}* -> *{$appointment->schedule->date->format('d.m(D)')}* -> *{$appointment->schedule->term}*"."\n",
             "Имя фамилия: *{$appointment->client->first_name} {$appointment->client->last_name}*",
-            "Телефон: [{$appointment->client->phone}]()"."\n",
+            "Телефон: {$appointment->client->phone}"."\n",
         ]);
         
         $this->telegram::sendMessage([
             'text'          =>  $text,
             'chat_id'      =>  $appointment->schedule->user->telegram_chat_id,
-            'reply_markup'  =>  $buttons,
             'parse_mode'    =>  'Markdown',
         ]);
     }

@@ -35,6 +35,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         TomorrowAppointment::class => [
             SendToAdminTomorrowAppointmentNotification::class,
+            SendToUserTomorrowAppointmentNotification::class,
         ],
     ];
 
