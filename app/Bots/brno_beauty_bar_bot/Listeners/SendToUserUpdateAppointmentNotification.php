@@ -30,7 +30,7 @@ class SendToUserUpdateAppointmentNotification
 
         $text = implode("\n", [
             "🕐*Изменена дата записи*🕐"."\n",
-            "Дата и время записи: *{$appointment->schedule->date->format('d.m(D)')}: {$appointment->schedule->term}*"."\n",
+            "Дата и время записи: *{$appointment->schedule->date->format('d.m (D)')}: {$appointment->schedule->term}*"."\n",
             "Если забудешь время или дату, ты всегда сможешь найти в разделе *«мои записи»*"."\n",
 
             "*Где мы находимся 📍*"."\n",
