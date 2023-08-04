@@ -23,8 +23,8 @@ class AppointmentStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'client_id' => ['required', 'integer', Rule::exists('clients', 'id')],
-            'schedule_id' => ['required', 'integer', Rule::exists('schedules', 'id')],
+            'client' => ['required', 'integer', Rule::exists('clients', 'id')],
+            'schedule' => ['required', 'integer', Rule::exists('schedules', 'id')],
         ];
     }
 }

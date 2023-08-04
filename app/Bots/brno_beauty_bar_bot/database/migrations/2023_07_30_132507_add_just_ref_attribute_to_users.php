@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->after('telegram_chat_id', function ($table) {
-                $table->boolean('is_admin')->nullable();
                 $table->boolean('just_ref')->nullable();
             });
         });
