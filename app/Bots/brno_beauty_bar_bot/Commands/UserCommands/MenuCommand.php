@@ -23,16 +23,16 @@ class MenuCommand extends Command
 
     public function execute(Update $updates): Response
     {
-        $buttons = BotApi::inlineKeyboard([
-            [array(Appointment::getTitle(), Appointment::$command, '')],
-            [array(MyAppointments::getTitle(), MyAppointments::$command, '')],
-            [array(Location::getTitle(), Location::$command, '')],
-        ]);
+        // $buttons = BotApi::inlineKeyboard([
+        //     [array(Appointment::getTitle(), Appointment::$command, '')],
+        //     [array(MyAppointments::getTitle(), MyAppointments::$command, '')],
+        //     [array(Location::getTitle(), Location::$command, '')],
+        // ]);
 
         $data = [
-            'text'          =>  __('brno_beauty_bar_bot::menu.main'),
+            'text'          =>  "ghbdtn",
             'chat_id'       =>  $updates->getChat()->getId(),
-            'reply_markup'  =>  $buttons,
+            // 'reply_markup'  =>  $buttons,
             'parse_mode'    =>  'Markdown',
             'message_id'    =>  $updates->getCallbackQuery()?->getMessage()->getMessageId(),
             'disable_web_page_preview' => true
