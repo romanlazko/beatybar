@@ -36,7 +36,7 @@
                             
                             <x-telegram::table.td class="whitespace-nowrap">
                                 @if ($client->telegram_chat)
-                                    <x-telegram::chat-block :id="$client->telegram_chat->id"/>
+                                    <x-telegram::chat-block :chat="$client->telegram_chat"/>
                                 @endif
                                
                             </x-telegram::table.td>

@@ -24,6 +24,8 @@ class SendToAdminUpdateAppointmentNotification
     {
         $appointment = $event->appointment;
 
+        $admin_ids = $this->telegram->getAdmins()->toArray();
+
         $buttons = $this->telegram::inlineKeyboard([
             [array(MenuCommand::getTitle('ru'), MenuCommand::$command, '')]
         ]);
@@ -35,9 +37,9 @@ class SendToAdminUpdateAppointmentNotification
             "Телефон: [{$appointment->client->phone}]()"."\n",
         ]);
         
-        $this->telegram::sendMessage([
+        $this->telegram::sendMessages([
             'text'          =>  $text,
-            'chat_id'       =>  $appointment->schedule->user->telegram_chat_id,
+            'chat_ids'       =>  $admin_ids,
             'reply_markup'  =>  $buttons,
             'parse_mode'    =>  'Markdown',
         ]);

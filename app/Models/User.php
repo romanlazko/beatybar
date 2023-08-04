@@ -52,9 +52,4 @@ class User extends Authenticatable
     {
         return $this->is_admin;
     }
-
-    public function employee()
-    {
-        return $this->hasOne(Employee::class);
-    }
 }

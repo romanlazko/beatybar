@@ -2,7 +2,7 @@
     <button >
         - Master: 
         <x-telegram::badge>
-            {{ $appointment->schedule->user->name }}
+            {{ $appointment->schedule?->user->name }}
         </x-telegram::badge>
     </button>
 </div>

@@ -121,10 +121,10 @@
                     initialView: 'dayGridMonth',
                     headerToolbar: {
                         left: 'title',
-                        right: 'dayGridMonth,timeGridWeek,prev,next'
+                        right: 'prev,next'
                     },
                     titleFormat: { year: 'numeric', month: 'short' }, 
-                    dayHeaderFormat: { weekday: 'short',  day: 'numeric', omitCommas: true }, 
+                    dayHeaderFormat: { weekday: 'short', omitCommas: true }, 
                     eventTimeFormat: {
                         hour: '2-digit',
                         minute: '2-digit',

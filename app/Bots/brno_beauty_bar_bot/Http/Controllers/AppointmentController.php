@@ -5,6 +5,7 @@ namespace App\Bots\brno_beauty_bar_bot\Http\Controllers;
 use App\Bots\brno_beauty_bar_bot\Events\CancelAppointment;
 use App\Bots\brno_beauty_bar_bot\Events\NewAppointment;
 use App\Bots\brno_beauty_bar_bot\Events\UpdateAppointment;
+use App\Bots\brno_beauty_bar_bot\Http\Requests\AppointmentStoreRequest;
 use App\Bots\brno_beauty_bar_bot\Models\Appointment;
 use App\Bots\brno_beauty_bar_bot\Models\Schedule;
 use Illuminate\Http\Request;
@@ -59,16 +60,9 @@ class AppointmentController extends Controller
         return back();
     }
 
-    public function store(Request $request)
+    public function store(AppointmentStoreRequest $request)
     {
         $schedule = Schedule::find($request->schedule);
-
-        if (!$schedule) {
-            return back()->with([
-                'ok' => false,
-                'description' => "This schedule does not exist"
-            ]);
-        }
 
         if ($schedule?->appointments) {
             foreach ($schedule->appointments as $appointment) {

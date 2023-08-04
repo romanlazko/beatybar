@@ -13,9 +13,16 @@ class ClientController extends Controller
 {
     public function index()
     {
+        if (!auth()->user()->isAdmin()) {
+            return back()->with([
+                'ok' => false,
+                'description' => 'You have no permission'
+            ]);
+        }
+
         $clients = Client::with('telegram_chat')->paginate(10);
 
-		return view('brno_beauty_bar_bot::client.index', compact(
+        return view('brno_beauty_bar_bot::client.index', compact(
             'clients'
         ));
     }
@@ -23,6 +30,13 @@ class ClientController extends Controller
     public function edit(Client $client)
     {
         $user = auth()->user();
+
+        if (!$user->isAdmin()) {
+            return back()->with([
+                'ok' => false,
+                'description' => 'You have no permission'
+            ]);
+        }
 
         $schedule = Schedule::with('appointment')
             ->orderBy('date', 'asc')
@@ -54,6 +68,13 @@ class ClientController extends Controller
 
     public function update(Client $client, Request $request)
     {
+        if (!auth()->user()->isAdmin()) {
+            return back()->with([
+                'ok' => false,
+                'description' => 'You have no permission'
+            ]);
+        }
+
         $client->update([
             'telegram_chat_id' => $request->telegram_chat_id,
             'first_name' => $request->first_name,
@@ -70,6 +91,13 @@ class ClientController extends Controller
 
     public function create()
     {
+        if (!auth()->user()->isAdmin()) {
+            return back()->with([
+                'ok' => false,
+                'description' => 'You have no permission'
+            ]);
+        }
+
         $telegram_chats = TelegramChat::with('client')
             ->get()
             ->filter(function ($telegram_chat) {
@@ -81,6 +109,13 @@ class ClientController extends Controller
 
     public function store(ClientStoreRequest $request)
     {
+        if (!auth()->user()->isAdmin()) {
+            return back()->with([
+                'ok' => false,
+                'description' => 'You have no permission'
+            ]);
+        }
+        
 		Client::create([
             'telegram_chat_id' => $request->telegram_chat_id,
             'first_name' => $request->first_name,

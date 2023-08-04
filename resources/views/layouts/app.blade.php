@@ -25,8 +25,6 @@
     </head>
     
     <body class="font-sans antialiased">
-        @livewireScripts
-        @livewireCalendarScripts
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
 

@@ -3,14 +3,10 @@
 namespace App\Bots\brno_beauty_bar_bot\Http\Controllers;
 
 use App\Bots\brno_beauty_bar_bot\Http\Requests\ScheduleStoreRequest;
-use App\Bots\brno_beauty_bar_bot\Models\Appointment;
-use App\Bots\brno_beauty_bar_bot\Models\Employee;
 use App\Bots\brno_beauty_bar_bot\Models\Schedule;
-use App\Bots\brno_beauty_bar_bot\Services\CalendarService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 
 class ScheduleController extends Controller
 {
@@ -28,26 +24,22 @@ class ScheduleController extends Controller
 
         foreach ($schedules as $schedule) {
             if (!$schedule->appointments->isEmpty()) {
-                $hasDoneAppointment = false;
+
+                if ($schedule->appointments->where('status', 'new')->count() == 0) {
+                    $events[] = [
+                        'id' => $schedule->id,
+                        'start' => $schedule->date->format('Y-m-d') . " " . $schedule->term,
+                        'color' => 'gray',
+                        'classNames' => "text-[6px] sm:text-sm",
+                    ];
+                }
 
                 foreach ($schedule->appointments as $appointment) {
-
-                    if (!$hasDoneAppointment && $appointment->status !== 'new') {
-                        $events[] = [
-                            'id' => $appointment->schedule->id,
-                            'start' => $appointment->schedule->date->format('Y-m-d') . " " . $appointment->schedule->term,
-                            'color' => 'gray',
-                            'classNames' => "text-[6px] sm:text-sm",
-                        ];
-                        $hasDoneAppointment = true;
-                    }
-
                     $statusColorMap = [
                         'new' => 'default',
                         'done' => 'green',
                         'no_done' => 'red',
                     ];
-
                     $color = isset($statusColorMap[$appointment->status]) ? $statusColorMap[$appointment->status] : 'gray';
 
                     $events[] = [
@@ -105,6 +97,12 @@ class ScheduleController extends Controller
 
     public function destroy(Schedule $schedule)
     {
+        if ($schedule->appointments) {
+            foreach ($schedule->appointments as $appointment) {
+                $appointment->delete();
+            }
+        }
+        
         $schedule->delete();
 
         return back();

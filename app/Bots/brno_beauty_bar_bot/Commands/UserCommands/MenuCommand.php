@@ -26,7 +26,6 @@ class MenuCommand extends Command
         $buttons = BotApi::inlineKeyboard([
             [array(Appointment::getTitle(), Appointment::$command, '')],
             [array(MyAppointments::getTitle(), MyAppointments::$command, '')],
-            // [array(OurWorks::getTitle(), OurWorks::$command, '')],
             [array(Location::getTitle(), Location::$command, '')],
         ]);
 

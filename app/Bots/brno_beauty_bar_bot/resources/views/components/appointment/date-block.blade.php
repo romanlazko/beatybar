@@ -2,7 +2,7 @@
     <button onclick="$(this).closest('.block').find('.form').toggle('fast')">
         - Date: 
         <x-telegram::badge trigger="{{ isset($appointment->schedule->date) }}">
-            {{ $appointment->schedule->date->format('d.m.Y (D)')}}: {{ $appointment->schedule->term }}
+            {{ $appointment->schedule?->date->format('d.m.Y (D)')}}: {{ $appointment->schedule?->term }}
         </x-telegram::badge>
         <span class="hover:text-blue-500 text-sm text-gray-500"><i class="fa-solid fa-pen-to-square"></i></span>
     </button>
