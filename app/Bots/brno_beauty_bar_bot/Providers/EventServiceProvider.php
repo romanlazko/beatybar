@@ -10,6 +10,7 @@ use App\Bots\brno_beauty_bar_bot\Listeners\SendToAdminTomorrowAppointmentNotific
 use App\Bots\brno_beauty_bar_bot\Listeners\SendToAdminUpdateAppointmentNotification;
 use App\Bots\brno_beauty_bar_bot\Listeners\SendToUserCancelAppointmentNotification;
 use App\Bots\brno_beauty_bar_bot\Listeners\SendToUserNewAppointmentNotification;
+use App\Bots\brno_beauty_bar_bot\Listeners\SendToUserTomorrowAppointmentNotification;
 use App\Bots\brno_beauty_bar_bot\Listeners\SendToUserUpdateAppointmentNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
