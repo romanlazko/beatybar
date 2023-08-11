@@ -51,16 +51,16 @@ class ConfirmAppointCommand extends Command
         }
     
         $buttons = BotApi::inlineKeyboard([
-            [array("👌 Подтвердить", Appoint::$command, '')]
+            [array("👌 Подтвердить", Appoint::$command, '')],
             [array("👈 Назад", ChooseTerm::$command, '')]
         ]);
 
         $text = implode("\n", [
-            "Пожалуйста, проверь все данные, и подтверди запись:"."\n\n",
-            "Мастер: *{$appointment->schedule->user->name}*"."\n",
-            "Дата и время: *{$appointment->schedule->date->format('d.m(D)')}: {$appointment->schedule->term}*"."\n",
+            "Пожалуйста, проверь все данные, и подтверди запись:"."\n",
+            "Мастер: *{$appointment->schedule->user->name}*",
+            "Дата и время: *{$appointment->schedule->date->format('d.m(D)')}: {$appointment->schedule->term}*",
             "Имя фамилия: *{$appointment->client->first_name} {$appointment->client->last_name}*",
-            "Телефон: [{$appointment->client->phone}]()"."\n\n",
+            "Телефон: [{$appointment->client->phone}]()"."\n",
             "Если все правильно, нажми на кнопку *«Подтвердить»*"
         ]);
 
