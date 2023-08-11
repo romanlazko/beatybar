@@ -15,12 +15,9 @@ class CommandsList extends DefaultCommandsList
             UserCommands\StartCommand::class,
             UserCommands\MenuCommand::class,
             UserCommands\About::class,
-            UserCommands\ShowMyAppointment::class,
-            
-
 
             // Appointment
-            UserCommands\Appointment\Appointment::class,
+            UserCommands\Appointment\AppointmentCommand::class,
             UserCommands\Appointment\CreateProfile::class,
             UserCommands\Appointment\FirstName::class,
             UserCommands\Appointment\LastName::class,
@@ -34,9 +31,15 @@ class CommandsList extends DefaultCommandsList
             UserCommands\Appointment\ChooseWeek::class,
             UserCommands\Appointment\ChooseDay::class,
             UserCommands\Appointment\ChooseTerm::class,
+            UserCommands\Appointment\ConfirmAppointCommand::class,
             UserCommands\Appointment\Appoint::class,
 
             UserCommands\MyAppointments::class,
+            UserCommands\ShowMyAppointment::class,
+            UserCommands\CancelAppointmentCommand::class,
+            UserCommands\CancelCommand::class,
+            UserCommands\DefaultCommand::class,
+
             UserCommands\HelpCommand::class,
             UserCommands\CustomReferalCommand::class,
         ],
