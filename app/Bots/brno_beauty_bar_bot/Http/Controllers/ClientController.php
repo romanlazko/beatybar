@@ -7,6 +7,7 @@ use App\Bots\brno_beauty_bar_bot\Models\Client;
 use App\Bots\brno_beauty_bar_bot\Models\Schedule;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Romanlazko\Telegram\Models\TelegramChat;
 
 class ClientController extends Controller
@@ -98,11 +99,20 @@ class ClientController extends Controller
             ]);
         }
 
-        $telegram_chats = TelegramChat::with('client')
-            ->get()
-            ->filter(function ($telegram_chat) {
-                return $telegram_chat->client == null;
-            });
+        $telegram_chats = DB::select("
+            SELECT *
+            FROM chats
+            WHERE NOT EXISTS (
+                SELECT 1
+                FROM clients
+                WHERE clients.chat_id = chats.id
+            )
+        ");
+
+        // $telegram_chats = TelegramChat::all()
+        //     ->filter(function ($telegram_chat) {
+        //         return $telegram_chat->chat_id == null;
+        //     });
 
 		return view('brno_beauty_bar_bot::client.create', compact('telegram_chats'));
     }
