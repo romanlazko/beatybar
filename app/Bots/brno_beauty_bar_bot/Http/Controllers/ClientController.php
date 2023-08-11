@@ -53,11 +53,20 @@ class ClientController extends Controller
         
         $appointments = $client->appointments->sortBy('schedule.date');
 
-        $telegram_chats = TelegramChat::with('client')
-            ->get()
-            ->filter(function ($telegram_chat) {
-                return $telegram_chat->client == null;
-            });
+        $telegram_chats = DB::select("
+            SELECT *
+            FROM telegram_chats
+            WHERE NOT EXISTS (
+                SELECT 1
+                FROM clients
+                WHERE clients.telegram_chat_id = telegram_chats.id
+            )
+        ");
+        // $telegram_chats = TelegramChat::with('client')
+        //     ->get()
+        //     ->filter(function ($telegram_chat) {
+        //         return $telegram_chat->client == null;
+        //     });
 
 		return view('brno_beauty_bar_bot::client.edit', compact(
             'client',
