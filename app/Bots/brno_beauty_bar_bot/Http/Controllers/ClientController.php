@@ -101,11 +101,11 @@ class ClientController extends Controller
 
         $telegram_chats = DB::select("
             SELECT *
-            FROM chats
+            FROM telegram_chats
             WHERE NOT EXISTS (
                 SELECT 1
                 FROM clients
-                WHERE clients.chat_id = chats.id
+                WHERE clients.telegram_chat_id = telegram_chats.id
             )
         ");
 
