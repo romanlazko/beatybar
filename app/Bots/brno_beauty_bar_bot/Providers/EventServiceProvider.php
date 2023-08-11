@@ -1,7 +1,6 @@
 <?php 
 namespace App\Bots\brno_beauty_bar_bot\Providers;
 
-use App\Bots\brno_beauty_bar_bot\Events\CancelAppointment;
 use App\Bots\brno_beauty_bar_bot\Events\CancelAppointmentEvent;
 use App\Bots\brno_beauty_bar_bot\Events\NewAppointment;
 use App\Bots\brno_beauty_bar_bot\Events\TomorrowAppointment;
