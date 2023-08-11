@@ -19,6 +19,7 @@ class Config
             ],
             'admin_ids'         => [
             ],
+            'lang' => 'ru',
         ];
     }
 }

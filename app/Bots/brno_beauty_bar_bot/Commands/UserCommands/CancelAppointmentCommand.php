@@ -14,6 +14,11 @@ class CancelAppointmentCommand extends Command
 {
     public static $command = 'cancel_appointment';
 
+    public static $title = [
+        'ru' => '❌ Отменить запись',
+        'en' => '❌ Cancel appointment'
+    ];
+
     public static $usage = ['cancel_appointment'];
 
     protected $enabled = true;

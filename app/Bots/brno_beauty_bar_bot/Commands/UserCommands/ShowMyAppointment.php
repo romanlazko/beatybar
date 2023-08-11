@@ -31,8 +31,8 @@ class ShowMyAppointment extends Command
         }
 
         $buttons = BotApi::inlineKeyboard([
-            [array(CancelAppointmentCommand::getTitle('ru'), CancelAppointmentCommand::$command, '')],
-            [array(MenuCommand::getTitle('ru'), MenuCommand::$command, '')]
+            [array(CancelAppointmentCommand::getTitle(), CancelAppointmentCommand::$command, '')],
+            [array(MenuCommand::getTitle(), MenuCommand::$command, '')]
         ]);
 
         $text = "📎 *{$appointment->schedule->date->format('d.m (D)')}: {$appointment->schedule->term}* - у тебя маникюр в BeautyBar, не забудь 👄";
