@@ -2,7 +2,6 @@
 
 namespace App\Bots\brno_beauty_bar_bot\Listeners;
 
-use App\Bots\brno_beauty_bar_bot\Commands\UserCommands\MenuCommand;
 use App\Bots\brno_beauty_bar_bot\Events\CancelAppointmentEvent;
 use Romanlazko\Telegram\App\Telegram;
 
