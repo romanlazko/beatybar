@@ -5,6 +5,7 @@ use App\Bots\brno_beauty_bar_bot\Events\CancelAppointment;
 use App\Bots\brno_beauty_bar_bot\Events\NewAppointment;
 use App\Bots\brno_beauty_bar_bot\Events\TomorrowAppointment;
 use App\Bots\brno_beauty_bar_bot\Events\UpdateAppointment;
+use App\Bots\brno_beauty_bar_bot\Listeners\SendToAdminCancelAppointmentNotification;
 use App\Bots\brno_beauty_bar_bot\Listeners\SendToAdminNewAppointmentNotification;
 use App\Bots\brno_beauty_bar_bot\Listeners\SendToAdminTomorrowAppointmentNotification;
 use App\Bots\brno_beauty_bar_bot\Listeners\SendToAdminUpdateAppointmentNotification;

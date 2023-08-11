@@ -35,9 +35,9 @@ class CancelCommand extends Command
             'status' => 'canceled'
         ]);
 
-        // if ($appointment) {
+        if ($appointment) {
             event(new CancelAppointmentEvent($appointment));
-        // }
+        }
     
         return BotApi::deleteMessage([
             'chat_id'       =>  $updates->getChat()->getId(),
