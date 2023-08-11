@@ -31,10 +31,12 @@ class SendToAdminUpdateAppointmentNotification
         ]);
 
         $text = implode("\n", [
-            "🕐*Изменена дата записи*🕐"."\n\n",
-            
-            "Мастер: *{$appointment->schedule->user->name}*"."\n",
-            "Дата и время: *{$appointment->schedule->date->format('d.m(D)')}: {$appointment->schedule->term}*"."\n",
+            "🕐*Изменена дата записи*🕐"."\n",
+
+            "#{$appointment->schedule->date->format('d.m(D)')}"."\n",
+
+            "Мастер: *{$appointment->schedule->user->name}*",
+            "Дата и время: *{$appointment->schedule->date->format('d.m(D)')}: {$appointment->schedule->term}*",
             "Имя фамилия: *{$appointment->client->first_name} {$appointment->client->last_name}*",
             "Телефон: [{$appointment->client->phone}]()"
         ]);

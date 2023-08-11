@@ -30,15 +30,15 @@ class SendToUserCancelAppointmentNotification
         ]);
 
         $text = implode("\n", [
-            "❌*Ваша запись отменена*❌"."\n\n",
+            "❌*Запись отменена*❌"."\n",
 
-            "Мастер: *{$appointment->schedule->user->name}*"."\n",
-            "Дата и время: *{$appointment->schedule->date->format('d.m(D)')}: {$appointment->schedule->term}*"."\n",
+            "Мастер: *{$appointment->schedule->user->name}*",
+            "Дата и время: *{$appointment->schedule->date->format('d.m(D)')}: {$appointment->schedule->term}*"
         ]);
 
         $this->telegram::sendMessage([
             'text'          =>  $text,
-            'chat_id'       =>  $appointment->client->telegram_chat->chat_id,
+            'chat_id'       =>  $appointment->client?->telegram_chat?->chat_id,
             'reply_markup'  =>  $buttons,
             'parse_mode'    =>  'Markdown',
         ]);

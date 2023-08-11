@@ -25,17 +25,19 @@ class SendToAdminNewAppointmentNotification
 
         $admin_ids = $this->telegram->getAdmins()->toArray();
 
-        $buttons = $this->telegram::inlineKeyboard([
-            [array(MenuCommand::getTitle('ru'), MenuCommand::$command, '')]
-        ]);
+        $buttons = $this->telegram::inlineKeyboardWithLink(
+            array('text' => 'Контакт', 'url'  => "tg://user?id={$appointment->client?->telegram_chat?->chat_id}")
+        );
 
         $text = implode("\n", [
-            "✅*Новая запись на маникюр*✅"."\n\n",
+            "✅*Новая запись на маникюр*✅"."\n",
 
-            "Мастер: *{$appointment->schedule->user->name}*"."\n",
-            "Дата и время: *{$appointment->schedule->date->format('d.m(D)')}: {$appointment->schedule->term}*"."\n",
-            "Имя фамилия: *{$appointment->client->first_name} {$appointment->client->last_name}*",
-            "Телефон: [{$appointment->client->phone}]()"
+            "#{$appointment->schedule->date->format('d.m(D)')}"."\n",
+
+            "Мастер: *{$appointment->schedule->user->name}*",
+            "Дата и время: *{$appointment->schedule->date->format('d.m(D)')}: {$appointment->schedule->term}*",
+            "Имя фамилия: *{$appointment->client?->first_name} {$appointment->client?->last_name}*",
+            "Телефон: [{$appointment->client?->phone}]()"
         ]);
         
         $this->telegram::sendMessages([

@@ -31,7 +31,7 @@ class ShowMyAppointment extends Command
         }
 
         $buttons = BotApi::inlineKeyboard([
-            [array(CancelAppointmentCommand::getTitle('ru'), CancelAppointmentCommand::$command, '')]
+            [array(CancelAppointmentCommand::getTitle('ru'), CancelAppointmentCommand::$command, '')],
             [array(MenuCommand::getTitle('ru'), MenuCommand::$command, '')]
         ]);
 

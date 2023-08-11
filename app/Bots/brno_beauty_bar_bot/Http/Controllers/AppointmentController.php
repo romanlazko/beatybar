@@ -2,7 +2,7 @@
 
 namespace App\Bots\brno_beauty_bar_bot\Http\Controllers;
 
-use App\Bots\brno_beauty_bar_bot\Events\CancelAppointment;
+use App\Bots\brno_beauty_bar_bot\Events\CancelAppointmentEvent;
 use App\Bots\brno_beauty_bar_bot\Events\NewAppointment;
 use App\Bots\brno_beauty_bar_bot\Events\UpdateAppointment;
 use App\Bots\brno_beauty_bar_bot\Http\Requests\AppointmentStoreRequest;
@@ -10,7 +10,6 @@ use App\Bots\brno_beauty_bar_bot\Models\Appointment;
 use App\Bots\brno_beauty_bar_bot\Models\Schedule;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Romanlazko\Telegram\App\Telegram;
 
 class AppointmentController extends Controller
 {
@@ -54,7 +53,7 @@ class AppointmentController extends Controller
         }
 
         if($appointment->status === 'canceled' OR $appointment->status === 'no_done'){
-            event(new CancelAppointment($appointment));
+            event(new CancelAppointmentEvent($appointment));
         }
 
         return back();

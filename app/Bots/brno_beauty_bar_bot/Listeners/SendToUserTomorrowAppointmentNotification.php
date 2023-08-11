@@ -24,9 +24,9 @@ class SendToUserTomorrowAppointmentNotification
         $appointment = $event->appointment;
 
         $text = implode("\n", [
-            "Привет, дорогая❤️"."\n\n",
+            "Привет, дорогая❤️"."\n",
 
-            "Завтра, *{$appointment->schedule->date->format('d.m (D)')}* -> *{$appointment->schedule->term}* ты записана на маникюр."."\n\n",
+            "Завтра, *{$appointment->schedule->date->format('d.m(D)')}* -> *{$appointment->schedule->term}* ты записана на маникюр."."\n",
 
             "Буду ждать тебя!"
         ]);

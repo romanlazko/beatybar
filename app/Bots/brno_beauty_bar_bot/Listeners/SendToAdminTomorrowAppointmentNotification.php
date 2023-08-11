@@ -23,18 +23,27 @@ class SendToAdminTomorrowAppointmentNotification
     {
         $appointment = $event->appointment;
 
+        $admin_ids = $this->telegram->getAdmins()->toArray();
+
+        $buttons = $this->telegram::inlineKeyboardWithLink(
+            array('text' => 'Контакт', 'url'  => "tg://user?id={$appointment->client?->telegram_chat?->chat_id}")
+        );
+
         $text = implode("\n", [
-            "⚠️У тебя на завтра запись⚠️"."\n\n",
-            
-            "Мастер: *{$appointment->schedule->user->name}*"."\n",
-            "Дата и время: *{$appointment->schedule->date->format('d.m(D)')}: {$appointment->schedule->term}*"."\n",
+            "⚠️*Напоминание о записи*⚠️"."\n",
+
+            "#{$appointment->schedule->date->format('d.m(D)')}"."\n",
+
+            "Мастер: *{$appointment->schedule->user->name}*",
+            "Дата и время: *{$appointment->schedule->date->format('d.m(D)')}: {$appointment->schedule->term}*",
             "Имя фамилия: *{$appointment->client->first_name} {$appointment->client->last_name}*",
             "Телефон: [{$appointment->client->phone}]()"
         ]);
         
-        $this->telegram::sendMessage([
+        $this->telegram::sendMessages([
             'text'          =>  $text,
-            'chat_id'      =>  $appointment->schedule->user->telegram_chat_id,
+            'chat_ids'      =>  $admin_ids,
+            'reply_markup'  =>  $buttons,
             'parse_mode'    =>  'Markdown',
         ]);
     }
