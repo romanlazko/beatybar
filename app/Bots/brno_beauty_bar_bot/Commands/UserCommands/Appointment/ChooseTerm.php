@@ -2,7 +2,6 @@
 
 namespace App\Bots\brno_beauty_bar_bot\Commands\UserCommands\Appointment;
 
-use App\Bots\brno_beauty_bar_bot\Commands\UserCommands\MenuCommand;
 use App\Bots\brno_beauty_bar_bot\Models\Schedule;
 use Carbon\Carbon;
 use Romanlazko\Telegram\App\BotApi;
@@ -30,7 +29,7 @@ class ChooseTerm extends Command
             ->get()
             ->sortBy('term')
             ->map(function ($schedule) {
-                return [array($schedule->term, Appoint::$command, $schedule->id)];
+                return [array($schedule->term, ConfirmAppointCommand::$command, $schedule->id)];
             })
             ->toArray();
 

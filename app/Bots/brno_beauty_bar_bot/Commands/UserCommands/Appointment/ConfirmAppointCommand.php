@@ -3,15 +3,13 @@
 namespace App\Bots\brno_beauty_bar_bot\Commands\UserCommands\Appointment;
 
 use App\Bots\brno_beauty_bar_bot\Commands\UserCommands\Appointment\AppointmentCommand;
-use App\Bots\brno_beauty_bar_bot\Events\NewAppointment;
-use App\Bots\brno_beauty_bar_bot\Models\Appointment;
 use App\Bots\brno_beauty_bar_bot\Models\Schedule;
 use Romanlazko\Telegram\App\BotApi;
 use Romanlazko\Telegram\App\Commands\Command;
 use Romanlazko\Telegram\App\Entities\Response;
 use Romanlazko\Telegram\App\Entities\Update;
 
-class Appoint extends Command
+class ConfirmAppointCommand extends Command
 {
     public static $command = 'confirm_appoint';
 
