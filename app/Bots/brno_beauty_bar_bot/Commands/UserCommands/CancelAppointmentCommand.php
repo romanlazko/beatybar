@@ -36,11 +36,11 @@ class CancelAppointmentCommand extends Command
         }
 
         $buttons = BotApi::inlineKeyboard([
-            [array(CancelCommand::getTitle('ru'), CancelCommand::$command, '')]
+            [array("Да", CancelCommand::$command, '')],
             [array(MenuCommand::getTitle('ru'), MenuCommand::$command, '')]
         ]);
 
-        $text = "📎 *{$appointment->schedule->date->format('d.m (D)')}: {$appointment->schedule->term}* - у тебя маникюр в BeautyBar, не забудь 👄";
+        $text = "Ты уверена что хочешь отменить запись?";
 
         return BotApi::returnInline([
             'text'          =>  $text,
