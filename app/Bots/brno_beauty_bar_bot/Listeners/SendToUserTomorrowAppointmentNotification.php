@@ -24,11 +24,11 @@ class SendToUserTomorrowAppointmentNotification
         $appointment = $event->appointment;
 
         $text = implode("\n", [
-            "Привет, дорогая❤️"."\n",
+            "Привет, дорогая❤️"."\n\n",
 
-            "Завтра, *{$appointment->schedule->date->format('d.m (D)')}* -> *{$appointment->schedule->term}* ты записана на маникюр."."\n",
+            "Завтра, *{$appointment->schedule->date->format('d.m (D)')}* -> *{$appointment->schedule->term}* ты записана на маникюр."."\n\n",
 
-            "Буду ждать тебя!"."\n",
+            "Буду ждать тебя!"
         ]);
 
         if ($appointment->client->telegram_chat_id) {
