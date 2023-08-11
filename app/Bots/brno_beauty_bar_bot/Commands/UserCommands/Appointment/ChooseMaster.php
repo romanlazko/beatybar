@@ -4,7 +4,7 @@ namespace App\Bots\brno_beauty_bar_bot\Commands\UserCommands\Appointment;
 
 use App\Bots\brno_beauty_bar_bot\Commands\UserCommands\MenuCommand;
 use App\Bots\brno_beauty_bar_bot\Models\Employee;
-use App\Models\User;
+use App\Models\User as Master;
 use Romanlazko\Telegram\App\BotApi;
 use Romanlazko\Telegram\App\Commands\Command;
 use Romanlazko\Telegram\App\Entities\Response;
@@ -20,25 +20,25 @@ class ChooseMaster extends Command
 
     public function execute(Update $updates): Response
     {
-        $users = User::all()
-            ->map(function ($user) use ($updates){
-                if ($user->just_ref) {
-                    if ($user->telegram_chat_id == $updates->getChat()->getReferal()) {
-                        return [array($user->name, SaveMaster::$command, $user->id)];
+        $masters = Master::all()
+            ->map(function ($master) use ($updates){
+                if ($master->just_ref) {
+                    if ($master->telegram_chat_id == $updates->getChat()->getReferal()) {
+                        return [array($master->name, SaveMaster::$command, $master->id)];
                     }
                     return [];
                 }
-                return [array($user->name, SaveMaster::$command, $user->id)];
+                return [array($master->name, SaveMaster::$command, $master->id)];
             })
             ->toArray();
 
         $buttons = BotApi::inlineKeyboard([
-            ...$users,
+            ...$masters,
             [array("👈 Назад", MenuCommand::$command, '')]
-        ], 'employee_id');
+        ], 'master_id');
 
         return BotApi::returnInline([
-            'text'          =>  "*Пожалуйста выбери мастера*",
+            'text'          =>  "*Выбери мастера:*",
             'chat_id'       =>  $updates->getChat()->getId(),
             'reply_markup'  =>  $buttons,
             'parse_mode'    =>  'Markdown',

@@ -2,39 +2,28 @@
 
 namespace App\Bots\brno_beauty_bar_bot\Commands\UserCommands;
 
-use App\Bots\brno_beauty_bar_bot\Commands\UserCommands\Appointment\Appointment;
 use Romanlazko\Telegram\App\BotApi;
 use Romanlazko\Telegram\App\Commands\Command;
 use Romanlazko\Telegram\App\Entities\Response;
 use Romanlazko\Telegram\App\Entities\Update;
 
-class About extends Command
+class HelpCommand extends Command
 {
-    public static $command = '/about';
+    public static $command = '/default';
 
-    public static $title = [
-        'ru' => 'О нас',
-        'en' => 'About us'
-    ];
-
-    public static $usage = ['/about', 'about'];
+    public static $usage = ['/default', 'default'];
 
     protected $enabled = true;
 
     public function execute(Update $updates): Response
     {
         $buttons = BotApi::inlineKeyboard([
-            [array(MenuCommand::getTitle(), MenuCommand::$command, '')]
+            [array(MenuCommand::getTitle(), MenuCommand::$command, '')],
         ]);
 
         $text = implode("\n", [
-            "О нас:"."\n",
-
-            "💅 Наши работы можно посмотреть [тут](https://instagram.com/valeri.beautybar?igshid=MzRlODBiNWFlZA==)"."\n",
-
-            "📍 Мы находимся [тут](https://goo.gl/maps/m2jeHYxHRFgSrXxd9)"."\n",
-
-            "☎️ Связь с [менеджером](https://t.me/valeri_kim95)"
+            "Я не понимаю эту команду, пожалуйста пользуйся кнопками или командами из меню."."\n",
+            "/menu - 🏠 Главное меню.",
         ]);
 
         $data = [
@@ -43,7 +32,6 @@ class About extends Command
             'reply_markup'  =>  $buttons,
             'parse_mode'    =>  'Markdown',
             'message_id'    =>  $updates->getCallbackQuery()?->getMessage()->getMessageId(),
-            'disable_web_page_preview' => true
         ];
 
         return BotApi::returnInline($data);

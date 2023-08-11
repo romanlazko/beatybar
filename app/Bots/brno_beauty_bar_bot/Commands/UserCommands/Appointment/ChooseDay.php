@@ -30,7 +30,7 @@ class ChooseDay extends Command
             ->unoccupied()
             ->where('date', '>', now()->startOfDay())
             ->where('date', '<=', $carbonDate->clone()->endOfWeek())
-            ->where('user_id', $updates->getInlineData()->getEmployeeId())
+            ->where('user_id', $updates->getInlineData()->getMasterId())
             ->get()
             ->sortBy('date')
             ->groupBy(function ($schedule) {
@@ -47,7 +47,7 @@ class ChooseDay extends Command
         ], 'day');
 
         return BotApi::returnInline([
-            'text'          =>  "*Пожалуйста выбери день*",
+            'text'          =>  "*Выбери день:*",
             'chat_id'       =>  $updates->getChat()->getId(),
             'reply_markup'  =>  $buttons,
             'parse_mode'    =>  'Markdown',

@@ -29,10 +29,11 @@ class SaveProfile extends Command
             if (empty($notes[$field])) {
                 return BotApi::answerCallbackQuery([
                     'callback_query_id' => $updates->getCallbackQuery()->getId(),
-                    'text'              => 'Пожалуйста заполните все поля.',
+                    'text'              => 'Пожалуйста? заполни все поля.',
                     'show_alert'        => true
                 ]);
-            }else {
+            }
+            else {
                 $array[$field] = $notes[$field];
             }
         }
@@ -43,19 +44,6 @@ class SaveProfile extends Command
             ],
             $array
         );
-
-        // $count = $profile->confirmations()
-        //     ->where('status', 'new')
-        //     ->whereDate('date', '>=', now()->toDateString())
-        //     ->count();
-
-        // if ($count > 0) {
-        //     return BotApi::answerCallbackQuery([
-        //         'callback_query_id' => $updates->getCallbackQuery()->getId(),
-        //         'text'              => "Что бы записаться на ноготочки удалите старую запись",
-        //         'show_alert'        => true
-        //     ]);
-        // }
 
         $updates->getInlineData()->getClientId($client->id);
 

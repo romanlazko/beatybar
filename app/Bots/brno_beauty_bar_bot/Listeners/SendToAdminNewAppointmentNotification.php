@@ -30,10 +30,12 @@ class SendToAdminNewAppointmentNotification
         ]);
 
         $text = implode("\n", [
-            "✅*Новая запись на маникюр*✅"."\n",
-            "*{$appointment->schedule->user->name}* -> *{$appointment->schedule->date->format('d.m(D)')}* -> *{$appointment->schedule->term}*"."\n",
+            "✅*Новая запись на маникюр*✅"."\n\n",
+
+            "Мастер: *{$appointment->schedule->user->name}*"."\n",
+            "Дата и время: *{$appointment->schedule->date->format('d.m(D)')}: {$appointment->schedule->term}*"."\n",
             "Имя фамилия: *{$appointment->client->first_name} {$appointment->client->last_name}*",
-            "Телефон: [{$appointment->client->phone}]()"."\n",
+            "Телефон: [{$appointment->client->phone}]()"
         ]);
         
         $this->telegram::sendMessages([

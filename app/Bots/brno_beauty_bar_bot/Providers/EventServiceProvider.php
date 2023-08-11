@@ -32,6 +32,7 @@ class EventServiceProvider extends ServiceProvider
             SendToAdminUpdateAppointmentNotification::class,
         ],
         CancelAppointment::class => [
+            SendToAdminCancelAppointmentNotification::class,
             SendToUserCancelAppointmentNotification::class,
         ],
         TomorrowAppointment::class => [

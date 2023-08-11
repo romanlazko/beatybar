@@ -13,6 +13,11 @@ class CreateProfile extends Command
 {
     public static $command = 'create_profile';
 
+    public static $title = [
+        'ru' => 'Создать профиль',
+        'en' => 'Create profile'
+    ];
+
     public static $usage = ['create_profile'];
 
     protected $enabled = true;
@@ -36,7 +41,8 @@ class CreateProfile extends Command
         ], 'client_id');
 
         $text = implode("\n", [
-            "*Мне нужны кое-какие данные от тебя, чтобы я мог сделать запись:*",
+            "*Нам нужны кое-какие данные от тебя, чтобы сделать запись:*"."\n",
+            "_Нажимай на кнопки с соответствующим пунктом, что бы заполнить информацию._"
         ]);
 
         return BotApi::returnInline([

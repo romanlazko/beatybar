@@ -3,10 +3,8 @@
 namespace App\Bots\brno_beauty_bar_bot\Commands\UserCommands;
 
 use App\Bots\brno_beauty_bar_bot\Models\Appointment;
-use App\Bots\brno_beauty_bar_bot\Models\Client;
 use Romanlazko\Telegram\App\BotApi;
 use Romanlazko\Telegram\App\Commands\Command;
-use Romanlazko\Telegram\App\DB;
 use Romanlazko\Telegram\App\Entities\Response;
 use Romanlazko\Telegram\App\Entities\Update;
 
@@ -23,14 +21,17 @@ class ShowMyAppointment extends Command
         $appointment = Appointment::find($updates->getInlineData()->getAppointmentId());
         
         if (!$appointment) {
-            return BotApi::answerCallbackQuery([
+            BotApi::answerCallbackQuery([
                 'callback_query_id' => $updates->getCallbackQuery()->getId(),
-                'text'              => "Не могу найти эту запись, шлюха",
+                'text'              => "Не могу найти эту запись, давай попробуем с начала",
                 'show_alert'        => true
             ]);
+
+            return $this->bot->executeCommand(MenuCommand::$command);
         }
 
         $buttons = BotApi::inlineKeyboard([
+            [array(CancelAppointmentCommand::getTitle('ru'), CancelAppointmentCommand::$command, '')]
             [array(MenuCommand::getTitle('ru'), MenuCommand::$command, '')]
         ]);
 

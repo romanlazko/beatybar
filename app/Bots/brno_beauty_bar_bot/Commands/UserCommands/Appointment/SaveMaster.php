@@ -2,8 +2,6 @@
 
 namespace App\Bots\brno_beauty_bar_bot\Commands\UserCommands\Appointment;
 
-use App\Bots\brno_beauty_bar_bot\Models\Profile;
-use Romanlazko\Telegram\App\BotApi;
 use Romanlazko\Telegram\App\Commands\Command;
 use Romanlazko\Telegram\App\Entities\Response;
 use Romanlazko\Telegram\App\Entities\Update;

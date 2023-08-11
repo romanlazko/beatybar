@@ -20,7 +20,7 @@ class AwaitPhone extends Command
         $text = $updates->getMessage()?->getText();
 
         if ($text === null) {
-            $this->handleError("*Пришлите пожалуйста номер телефона в виде текста.*");
+            $this->handleError("*Пришли пожалуйста номер телефона в виде текста.*");
             return $this->bot->executeCommand(Phone::$command);
         }
 

@@ -10,7 +10,7 @@ class Config
         return [
             'inline_data'       => [
                 'client_id' => null,
-                'employee_id' => null,
+                'master_id' => null,
                 'week' => null,
                 'day' => null,
                 'term' => null,

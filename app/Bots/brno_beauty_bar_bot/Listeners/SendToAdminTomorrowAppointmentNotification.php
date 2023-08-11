@@ -24,10 +24,12 @@ class SendToAdminTomorrowAppointmentNotification
         $appointment = $event->appointment;
 
         $text = implode("\n", [
-            "⚠️У тебя на завтра запись⚠️"."\n",
-            "*{$appointment->schedule->user->name}* -> *{$appointment->schedule->date->format('d.m(D)')}* -> *{$appointment->schedule->term}*"."\n",
+            "⚠️У тебя на завтра запись⚠️"."\n\n",
+            
+            "Мастер: *{$appointment->schedule->user->name}*"."\n",
+            "Дата и время: *{$appointment->schedule->date->format('d.m(D)')}: {$appointment->schedule->term}*"."\n",
             "Имя фамилия: *{$appointment->client->first_name} {$appointment->client->last_name}*",
-            "Телефон: {$appointment->client->phone}"."\n",
+            "Телефон: [{$appointment->client->phone}]()"
         ]);
         
         $this->telegram::sendMessage([

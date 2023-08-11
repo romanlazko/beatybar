@@ -23,12 +23,8 @@ class ChooseWeek extends Command
     {
         $schedules = Schedule::where('date', '>', now()->format('Y-m-d'))
             ->unoccupied()
-            ->where('user_id', $updates->getInlineData()->getEmployeeId())
+            ->where('user_id', $updates->getInlineData()->getMasterId())
             ->get()
-            
-            // ->filter(function ($schedule) {
-            //     return $schedule->unoccupied();
-            // })
             ->sortBy('date')
             ->groupBy(function ($schedule) {
                 return $schedule->date->format('W-Y');
@@ -47,7 +43,7 @@ class ChooseWeek extends Command
         ], 'week');
 
         return BotApi::returnInline([
-            'text'          =>  "*Пожалуйста выбери неделю*",
+            'text'          =>  "*Выбери неделю:*",
             'chat_id'       =>  $updates->getChat()->getId(),
             'reply_markup'  =>  $buttons,
             'parse_mode'    =>  'Markdown',

@@ -11,13 +11,13 @@ use Romanlazko\Telegram\App\DB;
 use Romanlazko\Telegram\App\Entities\Response;
 use Romanlazko\Telegram\App\Entities\Update;
 
-class Appointment extends Command
+class AppointmentCommand extends Command
 {
     public static $command = 'appointment';
 
     public static $title = [
-        'ru' => 'Записаться на маникюр 💅',
-        'en' => 'Appoint '
+        'ru' => '💅 Записаться на маникюр',
+        'en' => '💅 Manicure appointment'
     ];
 
     public static $usage = ['appointment'];
@@ -31,12 +31,18 @@ class Appointment extends Command
         $client = Client::where('telegram_chat_id', DB::getChat($updates->getChat()->getId())->id)->first();
 
         if ($client) {
-            if (!$client->appointments()->where('status', 'new')->whereHas('schedule', function ($query) {
-                return $query->where('date', '>=', now()->format('Y-m-d'));
-            })->get()->isEmpty()) {
+            $appointments = $client
+                ->appointments()
+                ->where('status', 'new')
+                ->whereHas('schedule', function ($query) {
+                    return $query->where('date', '>', now()->format('Y-m-d'));
+                })
+                ->get();
+
+            if (!$appointments->isEmpty()) {
                 return BotApi::answerCallbackQuery([
                     'callback_query_id' => $updates->getCallbackQuery()->getId(),
-                    'text'              => "Вы не можете записаться на новый термин",
+                    'text'              => "Что бы записаться на новый термин, нужно отменить старую запись",
                     'show_alert'        => true
                 ]);
             }
@@ -45,7 +51,6 @@ class Appointment extends Command
                 $client?->toArray() ?? []
             );
         }
-        
     
         return $this->bot->executeCommand(CreateProfile::$command);
     }

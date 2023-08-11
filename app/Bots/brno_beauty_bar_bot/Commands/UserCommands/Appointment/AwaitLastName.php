@@ -18,12 +18,12 @@ class AwaitLastName extends Command
         $text = $updates->getMessage()?->getText();
 
         if ($text === null) {
-            $this->handleError("*Пришлите пожалуйста фамилию в виде текста.*");
+            $this->handleError("*Пришли пожалуйста фамилию в виде текста.*");
             return $this->bot->executeCommand(LastName::$command);
         }
 
         if (!preg_match('/^[a-zA-Z ]+$/', $text)) {
-            $this->handleError("*Пришлите пожалуйста фамилию латинскими символами.*");
+            $this->handleError("*Пришли пожалуйста фамилию латинскими символами.*");
             return $this->bot->executeCommand(LastName::$command);
         }
 

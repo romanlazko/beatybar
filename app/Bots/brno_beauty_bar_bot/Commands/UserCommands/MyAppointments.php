@@ -2,7 +2,7 @@
 
 namespace App\Bots\brno_beauty_bar_bot\Commands\UserCommands;
 
-use App\Bots\brno_beauty_bar_bot\Commands\UserCommands\Appointment\Appointment as AppointmentAppointment;
+use App\Bots\brno_beauty_bar_bot\Commands\UserCommands\Appointment\AppointmentCommand;
 use App\Bots\brno_beauty_bar_bot\Models\Appointment;
 use App\Bots\brno_beauty_bar_bot\Models\Client;
 use Romanlazko\Telegram\App\BotApi;
@@ -16,8 +16,8 @@ class MyAppointments extends Command
     public static $command = 'my_appointments';
 
     public static $title = [
-        'ru' => 'Мои записи 📌',
-        'en' => 'My Appointments'
+        'ru' => '📌 Мои записи',
+        'en' => '📌 My Appointments'
     ];
 
     public static $usage = ['my_appointments'];
@@ -41,14 +41,15 @@ class MyAppointments extends Command
 
         if ($appointments->count() == 0) {
             $text = implode("\n", [
-                "Извини, у тебя нет актуальных записей еще 😢",
-                "Однако ты можешь записаться к нам, тык сюда 👇🏻",
+                "У тебя еще нет актуальных записей 😢",
+                "Но ты можешь записаться к нам 👇",
             ]);
             $buttons = BotApi::inlineKeyboard([
-                [array(AppointmentAppointment::getTitle(), AppointmentAppointment::$command, '')],
-                [array(MenuCommand::getTitle('ru'), MenuCommand::$command, ''),]
+                [array(AppointmentCommand::getTitle(), AppointmentCommand::$command, '')],
+                [array(MenuCommand::getTitle(), MenuCommand::$command, ''),]
             ]);
-        }else {
+        }
+        else {
             $text = "Мои записи:";
             $buttons = BotApi::inlineKeyboard($appointments->toArray(), 'appointment_id');
         }

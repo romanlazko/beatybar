@@ -26,7 +26,7 @@ class ChooseTerm extends Command
 
         $schedules = Schedule::where('date', '=', $carbonDate->format('Y-m-d'))
             ->unoccupied()
-            ->where('user_id', $updates->getInlineData()->getEmployeeId())
+            ->where('user_id', $updates->getInlineData()->getMasterId())
             ->get()
             ->sortBy('term')
             ->map(function ($schedule) {
@@ -40,7 +40,7 @@ class ChooseTerm extends Command
         ], 'schedule_id');
 
         return BotApi::returnInline([
-            'text'          =>  "*Пожалуйста выбери время*",
+            'text'          =>  "*Выбери время:*",
             'chat_id'       =>  $updates->getChat()->getId(),
             'reply_markup'  =>  $buttons,
             'parse_mode'    =>  'Markdown',

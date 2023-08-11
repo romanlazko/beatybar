@@ -14,6 +14,7 @@
         "romanlazko/telegram": "^1.0"
     },
     "require-dev": {
+        "enlightn/enlightn": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.18",
