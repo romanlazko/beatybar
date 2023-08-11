@@ -57,10 +57,8 @@ class ConfirmAppointCommand extends Command
 
         $text = implode("\n", [
             "Пожалуйста, проверь все данные, и подтверди запись:"."\n",
-            "Мастер: *{$appointment->schedule->user->name}*",
-            "Дата и время: *{$appointment->schedule->date->format('d.m(D)')}: {$appointment->schedule->term}*",
-            "Имя фамилия: *{$appointment->client->first_name} {$appointment->client->last_name}*",
-            "Телефон: [{$appointment->client->phone}]()"."\n",
+            "Мастер: *{$schedule->user->name}*",
+            "Дата и время: *{$schedule->date->format('d.m(D)')}: {$schedule->term}*"."\n",
             "Если все правильно, нажми на кнопку *«Подтвердить»*"
         ]);
 
