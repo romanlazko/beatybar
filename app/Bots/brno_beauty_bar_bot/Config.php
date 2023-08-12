@@ -20,6 +20,7 @@ class Config
             'admin_ids'         => [
             ],
             'lang' => 'ru',
+            'main_admin_id' => 569568856
         ];
     }
 }

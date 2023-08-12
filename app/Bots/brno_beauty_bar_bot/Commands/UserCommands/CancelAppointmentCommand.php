@@ -4,8 +4,10 @@ namespace App\Bots\brno_beauty_bar_bot\Commands\UserCommands;
 
 use App\Bots\brno_beauty_bar_bot\Models\Appointment;
 use App\Bots\brno_beauty_bar_bot\Models\Client;
+use Carbon\Carbon;
 use Romanlazko\Telegram\App\BotApi;
 use Romanlazko\Telegram\App\Commands\Command;
+use Romanlazko\Telegram\App\Config;
 use Romanlazko\Telegram\App\DB;
 use Romanlazko\Telegram\App\Entities\Response;
 use Romanlazko\Telegram\App\Entities\Update;
@@ -32,6 +34,23 @@ class CancelAppointmentCommand extends Command
                 'callback_query_id' => $updates->getCallbackQuery()->getId(),
                 'text'              => "Не могу найти эту запись",
                 'show_alert'        => true
+            ]);
+        }
+
+        $schedule_date = Carbon::parse($appointment->schedule->date->format('Y-m-d')." ".$appointment->schedule->term);
+ 
+        if (now() >= $schedule_date->subHours(24)) {
+
+            $text = implode("\n", [
+                "❗️*До твоей записи осталось менее чем 24 часа*❗️",
+                "Для изменения записи, пожалуйста, свяжись с [администратором](https://t.me/valeri_kim95)."
+            ]);
+
+            return BotApi::returnInline([
+                'text'          =>  $text,
+                'chat_id'       =>  $updates->getChat()->getId(),
+                'parse_mode'    =>  'Markdown',
+                'message_id'    =>  $updates->getCallbackQuery()?->getMessage()->getMessageId(),
             ]);
         }
 

@@ -62,11 +62,6 @@ class ClientController extends Controller
                 WHERE clients.telegram_chat_id = telegram_chats.id
             )
         ");
-        // $telegram_chats = TelegramChat::with('client')
-        //     ->get()
-        //     ->filter(function ($telegram_chat) {
-        //         return $telegram_chat->client == null;
-        //     });
 
 		return view('brno_beauty_bar_bot::client.edit', compact(
             'client',

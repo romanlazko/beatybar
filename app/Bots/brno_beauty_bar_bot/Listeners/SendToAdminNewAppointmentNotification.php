@@ -23,8 +23,6 @@ class SendToAdminNewAppointmentNotification
     {
         $appointment = $event->appointment;
 
-        $admin_ids = $this->telegram->getAdmins()->toArray();
-
         $buttons = $this->telegram::inlineKeyboardWithLink(
             array('text' => 'Контакт', 'url'  => "tg://user?id={$appointment->client?->telegram_chat?->chat_id}")
         );
@@ -40,9 +38,9 @@ class SendToAdminNewAppointmentNotification
             "Телефон: [{$appointment->client?->phone}]()"
         ]);
         
-        $this->telegram::sendMessages([
+        $this->telegram::sendMessage([
             'text'          =>  $text,
-            'chat_ids'      =>  $admin_ids,
+            'chat_id'       =>  $appointment->schedule->user->telegram_chat_id,
             'reply_markup'  =>  $buttons,
             'parse_mode'    =>  'Markdown',
         ]);
