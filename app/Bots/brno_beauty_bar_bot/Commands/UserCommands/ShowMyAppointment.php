@@ -35,7 +35,14 @@ class ShowMyAppointment extends Command
             [array(MenuCommand::getTitle(), MenuCommand::$command, '')]
         ]);
 
-        $text = "📎 *{$appointment->schedule->date->format('d.m (D)')}: {$appointment->schedule->term}* - у тебя маникюр в BeautyBar, не забудь 👄";
+        $text = implode("\n", [
+            "Мастер: *{$appointment->schedule->user->name}*",
+            "Дата и время: *{$appointment->schedule->date->format('d.m(D)')}: {$appointment->schedule->term}*"."\n",
+
+            "📍 [Masarykova 427/31, 602 00 Brno-střed-Brno-město](https://goo.gl/maps/u7L3p7xahrkJaa428)"."\n",
+
+            "Будем тебя ждать!",
+        ]);
 
         return BotApi::returnInline([
             'text'          =>  $text,

@@ -40,6 +40,7 @@ class SendToUserNewAppointmentNotification
 
             "Будем тебя ждать!",
         ]);
+        
         $this->telegram::sendMessage([
             'text'          =>  $text,
             'chat_id'       =>  $appointment->client->telegram_chat->chat_id,
