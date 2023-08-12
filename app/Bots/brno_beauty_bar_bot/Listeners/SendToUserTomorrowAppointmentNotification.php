@@ -28,6 +28,8 @@ class SendToUserTomorrowAppointmentNotification
 
             "Завтра, *{$appointment->schedule->date->format('d.m(D)')}* -> *{$appointment->schedule->term}* ты записана на маникюр."."\n",
 
+            "📍 [Masarykova 427/31, 602 00 Brno-střed-Brno-město](https://goo.gl/maps/u7L3p7xahrkJaa428)"."\n",
+
             "Буду ждать тебя!"
         ]);
 

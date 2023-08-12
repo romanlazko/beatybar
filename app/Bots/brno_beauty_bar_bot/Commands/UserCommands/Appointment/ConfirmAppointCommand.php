@@ -56,7 +56,7 @@ class ConfirmAppointCommand extends Command
         ]);
 
         $text = implode("\n", [
-            "Пожалуйста, проверь все данные, и подтверди запись:"."\n",
+            "*Пожалуйста, проверь все данные, и подтверди запись:*"."\n",
             "Мастер: *{$schedule->user->name}*",
             "Дата и время: *{$schedule->date->format('d.m(D)')}: {$schedule->term}*"."\n",
             "Если все правильно, нажми на кнопку *«Подтвердить»*"

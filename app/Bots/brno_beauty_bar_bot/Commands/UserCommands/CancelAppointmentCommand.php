@@ -42,7 +42,7 @@ class CancelAppointmentCommand extends Command
         if (now() >= $schedule_date->subHours(24)) {
 
             $text = implode("\n", [
-                "❗️*До твоей записи осталось менее чем 24 часа*❗️",
+                "❗️*До твоей записи осталось менее чем 24 часа*❗️"."\n",
                 "Для изменения записи, пожалуйста, свяжись с [администратором](https://t.me/valeri_kim95)."
             ]);
 
@@ -51,6 +51,7 @@ class CancelAppointmentCommand extends Command
                 'chat_id'       =>  $updates->getChat()->getId(),
                 'parse_mode'    =>  'Markdown',
                 'message_id'    =>  $updates->getCallbackQuery()?->getMessage()->getMessageId(),
+                'disable_web_page_preview' => true,
             ]);
         }
 
