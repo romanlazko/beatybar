@@ -41,6 +41,10 @@ class CancelAppointmentCommand extends Command
  
         if (now() >= $schedule_date->subHours(24)) {
 
+            $buttons = BotApi::inlineKeyboard([
+                [array(MenuCommand::getTitle('ru'), MenuCommand::$command, '')]
+            ]);
+
             $text = implode("\n", [
                 "❗️*До твоей записи осталось менее чем 24 часа*❗️"."\n",
                 "Для изменения записи, пожалуйста, свяжись с [администратором](https://t.me/valeri_kim95)."
@@ -49,6 +53,7 @@ class CancelAppointmentCommand extends Command
             return BotApi::returnInline([
                 'text'          =>  $text,
                 'chat_id'       =>  $updates->getChat()->getId(),
+                'reply_markup'  =>  $buttons,
                 'parse_mode'    =>  'Markdown',
                 'message_id'    =>  $updates->getCallbackQuery()?->getMessage()->getMessageId(),
                 'disable_web_page_preview' => true,
