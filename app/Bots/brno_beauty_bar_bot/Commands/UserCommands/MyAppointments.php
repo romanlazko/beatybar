@@ -28,7 +28,7 @@ class MyAppointments extends Command
     {
         $client = Client::where('telegram_chat_id', DB::getChat($updates->getChat()->getId())->id)->first();
 
-        $appointments = $client->appointments()
+        $appointments = $client?->appointments()
             ->where('status', 'new')
             ->whereHas('schedule', function ($query) {
                 return $query->where('date', '>=', now()->format('Y-m-d'));
@@ -39,7 +39,7 @@ class MyAppointments extends Command
                 return [array("{$appointment->schedule->date->format('d.m (D)')}: {$appointment->schedule->term}", ShowMyAppointment::$command, $appointment->id)];
             });
 
-        if ($appointments->count() == 0) {
+        if (!$client OR $appointments->count() == 0) {
             $text = implode("\n", [
                 "У тебя еще нет актуальных записей 😢",
                 "Но ты можешь записаться к нам 👇",
