@@ -30,7 +30,7 @@ class SendToAdminTomorrowAppointmentNotification
         $text = implode("\n", [
             "⚠️*Напоминание о записи*⚠️"."\n",
 
-            "#{$appointment->schedule->date->format('d.m(D)')}"."\n",
+            "#{$appointment->schedule->date->format('D')}{$appointment->schedule->date->format('dmY')}"."\n",
 
             "Мастер: *{$appointment->schedule->user->name}*",
             "Дата и время: *{$appointment->schedule->date->format('d.m(D)')}: {$appointment->schedule->term}*",
