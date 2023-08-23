@@ -160,8 +160,8 @@ return [
          * Package Service Providers...
          */
 
-        App\Bots\brno_beauty_bar_bot\Providers\BrnoBeautyBarBotProvider::class,
-        App\Bots\brno_beauty_bar_bot\Providers\EventServiceProvider::class,
+        App\Bots\VBBeautyBot\Providers\VBBeautyBotProvider::class,
+        App\Bots\VBBeautyBot\Providers\EventServiceProvider::class,
 
         /*
          * Application Service Providers...
