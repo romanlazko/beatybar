@@ -160,8 +160,8 @@ return [
          * Package Service Providers...
          */
 
-        App\Bots\VBBeautyBot\Providers\VBBeautyBotProvider::class,
-        App\Bots\VBBeautyBot\Providers\EventServiceProvider::class,
+        App\Bots\valeri_beautybar_bot\Providers\ValeriBeautybarBotProvider::class,
+        App\Bots\valeri_beautybar_bot\Providers\EventServiceProvider::class,
 
         /*
          * Application Service Providers...
