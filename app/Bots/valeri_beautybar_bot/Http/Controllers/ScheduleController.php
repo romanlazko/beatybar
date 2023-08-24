@@ -39,6 +39,7 @@ class ScheduleController extends Controller
                         'new' => 'default',
                         'done' => 'green',
                         'no_done' => 'red',
+                        'canceled' => 'red'
                     ];
                     $color = isset($statusColorMap[$appointment->status]) ? $statusColorMap[$appointment->status] : 'gray';
 
