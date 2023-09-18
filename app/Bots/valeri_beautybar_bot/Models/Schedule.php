@@ -36,7 +36,7 @@ class Schedule extends Model
     {
         return $query->where(function ($query) {
             $query->whereHas('appointments', function ($query) {
-                $query->whereNotIn('status', ['new', 'canceled', 'no_done']);
+                $query->whereNotIn('status', ['new']);
             });
         })
         ->orWhere(function ($query) {
