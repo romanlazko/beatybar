@@ -39,8 +39,7 @@ class SaveProfile extends Command
         }
 
         $client = Client::updateOrCreate([
-                'id'                    => $notes['id'] ?? null,
-                'telegram_chat_id'      => DB::getChat($updates->getChat()->getId())->id
+                'telegram_chat_id'      => DB::getChat($updates->getChat()->getId())->id,
             ],
             $array
         );

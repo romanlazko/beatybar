@@ -4,8 +4,6 @@ namespace App\Bots\valeri_beautybar_bot\Commands\UserCommands\Appointment;
 
 use App\Bots\valeri_beautybar_bot\Commands\UserCommands\MenuCommand;
 use App\Bots\valeri_beautybar_bot\Models\Schedule;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 use Romanlazko\Telegram\App\BotApi;
 use Romanlazko\Telegram\App\Commands\Command;
 use Romanlazko\Telegram\App\Entities\Response;
