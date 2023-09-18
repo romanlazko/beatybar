@@ -39,7 +39,7 @@ class AppointmentCommand extends Command
                 })
                 ->get();
 
-            if (!$appointments->isEmpty()) {
+            if ($appointments->count() >= 2) {
                 return BotApi::answerCallbackQuery([
                     'callback_query_id' => $updates->getCallbackQuery()->getId(),
                     'text'              => "Что бы записаться на новый термин, нужно отменить старую запись",
