@@ -6,6 +6,10 @@ use Romanlazko\Telegram\Models\Bot;
 use Romanlazko\Telegram\Providers\TelegramServiceProvider;
 use App\Bots\valeri_beautybar_bot\Models\Appointment;
 use App\Bots\valeri_beautybar_bot\Models\AppointmentExport;
+use App\Bots\valeri_beautybar_bot\Models\Schedule;
+use App\Bots\valeri_beautybar_bot\Models\ScheduleExport;
+use App\Bots\valeri_beautybar_bot\Models\Client;
+use App\Bots\valeri_beautybar_bot\Models\ClientExport;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +26,7 @@ Route::get('/', function () {
     return redirect()->route('dashboard');
 });
 
-Route::get('/export_appointment', function () {
+Route::get('/export', function () {
     Appointment::all()->each(function ($appointment) {
         AppointmentExport::create([
             'client_id' => $appointment->client_id,
@@ -34,6 +38,29 @@ Route::get('/export_appointment', function () {
             'status' => $appointment->status,
             'created_at' => $appointment->created_at,
             'updated_at' => $appointment->updated_at,
+        ]);
+    });
+
+    Client::all()->each(function ($client) {
+        ClientExport::create([
+            'company_id' => 1,
+            'telegram_chat_id' => $client->telegram_chat_id,
+            'first_name' => $client->first_name,
+            'last_name' => $client->last_name,
+            'phone' => $client->phone,
+            'created_at' => $client->created_at,
+            'updated_at' => $client->updated_at,
+        ]);
+    });
+
+    Schedule::all()->each(function ($schedule) {
+        ScheduleExport::create([
+            'employee_id' => 1,
+            'service_id' => 1,
+            'date' => $schedule->date,
+            'term' => $schedule->term,
+            'created_at' => $schedule->created_at,
+            'updated_at' => $schedule->updated_at,
         ]);
     });
 });
