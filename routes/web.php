@@ -29,6 +29,7 @@ Route::get('/', function () {
 Route::get('/export', function () {
     Appointment::all()->each(function ($appointment) {
         AppointmentExport::create([
+            'id'    => $appointment->id,
             'client_id' => $appointment->client_id,
             'employee_id' => 1,
             'service_id' => 1,
@@ -43,6 +44,7 @@ Route::get('/export', function () {
 
     Client::all()->each(function ($client) {
         ClientExport::create([
+            'id'    => $client->id,
             'company_id' => 1,
             'telegram_chat_id' => $client->telegram_chat_id,
             'first_name' => $client->first_name,
@@ -55,6 +57,7 @@ Route::get('/export', function () {
 
     Schedule::all()->each(function ($schedule) {
         ScheduleExport::create([
+            'id'    => $schedule->id,
             'employee_id' => 1,
             'service_id' => 1,
             'date' => $schedule->date,
